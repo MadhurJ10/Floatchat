@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model FloatchatAllProfiles {
+  id          Int      @id
+  profile_id  Int?
+  depth_lev   Int?
+  pressure    Float?    @db.Real
+  temperature Float?    @db.Real
+  salinity    Float?    @db.Real
+  latitude    Int?
+  longitude   Int?
+  time_col    DateTime? @db.Time(6)
+
+  @@map("floatchat_allprofiles")
+}
+
+model FloatchatProfiles {
+  id          Int      @id
+  profile_id  Int?
+  depth_lev   Int?
+  pressure    Float?    @db.Real
+  temperature Float?    @db.Real
+  salinity    Float?    @db.Real
+  latitude    Int?
+  longitude   Int?
+  time_col    DateTime? @db.Time(6)
+
+  @@map("floatchat_profiles")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
