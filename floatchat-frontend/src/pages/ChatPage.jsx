@@ -42,7 +42,7 @@ export default function ChatPage() {
         ...prev,
         { id: Date.now(), title: messages[0]?.text || "New Chat", messages },
       ]);
-    }
+    }j
     setMessages([]);
     setActiveChat(null);
   };
@@ -51,7 +51,7 @@ export default function ChatPage() {
   const handleSubmit = async (query) => {
     try {
       setIsStreaming(true); // start loader
-      const res = await fetch("http://localhost:3000/c/chatttt", {
+      const res = await fetch("http://localhost:3000/c/chatt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: query }),

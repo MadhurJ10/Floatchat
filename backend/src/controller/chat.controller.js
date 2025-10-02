@@ -1,7 +1,9 @@
 import prisma from "../lib/prisma.js";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+// const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)// important! use v1 to access gemini-1.5-flash);
+
 
 function stripCodeFences(str) {
   return str
@@ -11,7 +13,13 @@ function stripCodeFences(str) {
 }
 
 export const chat = async (req, res) => {
+  console.log(process.env.DATABASE_URL);
+
+
   const { text } = req.body;
+  // const model = genAI.ListModels();
+  // console.log(model);
+
 
   // ---------- 1️⃣ Prompt for SQL only ----------
   const queryPrompt = `
@@ -100,7 +108,7 @@ User query: ${text}
   // `;
 
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     // --- Call 1: get SQL
     const sqlResp = await model.generateContent(queryPrompt);

@@ -3,6 +3,7 @@ import LandingPage from "./pages/LandingPage"
 import ChatPage from "./pages/ChatPage"
 import Map from './pages/Map'
 
+
 export default function App() {
   return (
     <Router>
