@@ -2,6 +2,9 @@ import { useState, useEffect, useRef, useContext } from "react";
 import LeafletMap from "../components/LeafletMap";
 import { MapDataContext } from "../context/MapDataProvider"; // Make sure you have this
 
+
+const baseUrl = import.meta.env.VITE_BASE_URL;
+
 export default function ChatPage() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -51,7 +54,7 @@ export default function ChatPage() {
   const handleSubmit = async (query) => {
     try {
       setIsStreaming(true); // start loader
-      const res = await fetch("http://localhost:3000/c/chatt", {
+      const res = await fetch(`${baseUrl}/c/chatt`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: query }),
