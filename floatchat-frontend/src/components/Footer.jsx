@@ -34,7 +34,7 @@ export default function Footer() {
             </a>
           </div>
 
-          <p className="text-gray-500 text-xs mt-4">© 2025 FloatChat. Created by Madhur.</p>
+          <p className="text-gray-500 text-xs mt-4">© 2026 FloatChat. Created by Madhur.</p>
         </div>
 
         {/* Links */}
